@@ -12,4 +12,8 @@ export default class Piece {
   copy () {
     return new this.constructor(this.player, this.position)
   }
+
+  equals (other) {
+    this.name === other.name && this.player === other.player && this.position === other.position
+  }
 }

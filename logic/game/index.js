@@ -10,7 +10,7 @@ export default class Game {
     this.boards = []
   }
 
-  move (piece, target) {
+  move (piece, target) { // target is { board, position }
     if (!piece.possibilities().includes(target)) throw new Error('Illegal move')
     this.gameplay.move(piece, target)
   }
