@@ -1,11 +1,12 @@
 import Position from "./position"
 
 export default class Board {
-  constructor (pieces = [], parent = null, children = [], timeline = null) {
+  constructor (pieces = [], parent = null, children = [], timeline = null, timestamp = 0) {
     this.pieces = pieces
     this.parent = parent
     this.children = children
     this.timeline = timeline
+    this.timestamp = timestamp
 
     this._initTurn()
   }
@@ -30,7 +31,7 @@ export default class Board {
         if (!(action instanceof Position))  throw new Error('Unkown action ' + action)
         newPieces.find(p => p.equals(piece)).position = action
     }
-    const next = new Board(newPieces, this, [], timeline || this.timeline)
+    const next = new Board(newPieces, this, [], timeline || this.timeline, this.timestamp + 1)
     this.children.push(next)
     return next
   }
